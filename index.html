@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greater Washington Partnership | AI Opportunity Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gwp-navy: #1a2744;
+            --gwp-blue: #2c4a7c;
+            --gwp-light-blue: #4a7cb8;
+            --gwp-accent: #c9a227;
+            --gwp-gold: #d4af37;
+            --gwp-slate: #64748b;
+            --gwp-light: #f8fafc;
+            --gwp-white: #ffffff;
+            --gwp-border: #e2e8f0;
+            --shadow-sm: 0 1px 2px rgba(26, 39, 68, 0.05);
+            --shadow-md: 0 4px 12px rgba(26, 39, 68, 0.08);
+            --shadow-lg: 0 12px 40px rgba(26, 39, 68, 0.12);
+            --shadow-xl: 0 20px 60px rgba(26, 39, 68, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            color: var(--gwp-navy);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--gwp-navy) 0%, var(--gwp-blue) 100%);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-mark {
+            width: 56px;
+            height: 56px;
+            background: var(--gwp-gold);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gwp-navy);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo-text {
+            color: var(--gwp-white);
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .logo-text .partnership-label {
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        .header-badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 12px 20px;
+            color: var(--gwp-white);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .header-badge span {
+            color: var(--gwp-gold);
+            font-weight: 600;
+        }
+
+        .header-main {
+            max-width: 900px;
+        }
+
+        .header-main h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 500;
+            color: var(--gwp-white);
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-main h2 em {
+            font-style: normal;
+            color: var(--gwp-gold);
+        }
+
+        .header-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--gwp-gold);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 40px 80px;
+        }
+
+        /* Section Styles */
+        .section {
+            background: var(--gwp-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 24px;
+            overflow: hidden;
+            border: 1px solid var(--gwp-border);
+            transition: var(--transition);
+        }
+
+        .section:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            padding: 24px 32px;
+            background: linear-gradient(to right, var(--gwp-light), var(--gwp-white));
+            border-bottom: 1px solid var(--gwp-border);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .section-header:hover {
+            background: var(--gwp-light);
+        }
+
+        .section-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gwp-navy);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .section-header h3::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--gwp-gold);
+            border-radius: 2px;
+        }
+
+        .section-toggle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gwp-white);
+            border: 1px solid var(--gwp-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--gwp-slate);
+        }
+
+        .section-header:hover .section-toggle {
+            background: var(--gwp-navy);
+            border-color: var(--gwp-navy);
+            color: var(--gwp-white);
+        }
+
+        .section-toggle svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .section.collapsed .section-toggle svg {
+            transform: rotate(-90deg);
+        }
+
+        .section-content {
+            padding: 32px;
+            max-height: 2000px;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .section.collapsed .section-content {
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+        }
+
+        /* Snapshot Tiles */
+        .snapshot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .snapshot-tile {
+            background: linear-gradient(135deg, var(--gwp-light) 0%, var(--gwp-white) 100%);
+            border: 1px solid var(--gwp-border);
+            border-radius: 12px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .snapshot-tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gwp-blue), var(--gwp-gold));
+        }
+
+        .snapshot-tile:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .snapshot-tile h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gwp-navy);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .snapshot-tile p {
+            font-size: 15px;
+            color: var(--gwp-slate);
+            line-height: 1.7;
+        }
+
+        /* Pillar Tabs */
+        .pillar-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            border-bottom: 2px solid var(--gwp-border);
+            padding-bottom: 0;
+        }
+
+        .pillar-tab {
+            padding: 16px 28px;
+            background: transparent;
+            border: none;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gwp-slate);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .pillar-tab:hover {
+            color: var(--gwp-navy);
+        }
+
+        .pillar-tab.active {
+            color: var(--gwp-navy);
+            border-bottom-color: var(--gwp-gold);
+        }
+
+        .pillar-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .pillar-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pillar-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--gwp-border);
+        }
+
+        .pillar-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--gwp-navy), var(--gwp-blue));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .pillar-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--gwp-gold);
+        }
+
+        .pillar-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--gwp-navy);
+            margin-bottom: 8px;
+        }
+
+        .pillar-info p {
+            font-size: 15px;
+            color: var(--gwp-slate);
+            line-height: 1.7;
+        }
+
+        .pillar-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .detail-block h5 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gwp-blue);
+            margin-bottom: 12px;
+        }
+
+        .detail-block ul {
+            list-style: none;
+        }
+
+        .detail-block li {
+            font-size: 14px;
+            color: var(--gwp-slate);
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            border-bottom: 1px solid var(--gwp-border);
+        }
+
+        .detail-block li:last-child {
+            border-bottom: none;
+        }
+
+        .detail-block li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--gwp-gold);
+            border-radius: 50%;
+        }
+
+        /* Initiative Cards */
+        .initiative-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .initiative-card {
+            background: var(--gwp-white);
+            border: 1px solid var(--gwp-border);
+            border-radius: 12px;
+            padding: 28px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .initiative-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 24px;
+            right: 24px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gwp-gold), var(--gwp-light-blue));
+            border-radius: 3px 3px 0 0;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .initiative-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .initiative-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .initiative-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gwp-navy);
+            margin-bottom: 16px;
+        }
+
+        .initiative-card .ai-lift {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gwp-blue);
+            margin-bottom: 10px;
+        }
+
+        .initiative-card p {
+            font-size: 14px;
+            color: var(--gwp-slate);
+            line-height: 1.7;
+        }
+
+        /* Playbook Timeline */
+        .playbook-timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .playbook-timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--gwp-gold), var(--gwp-blue), var(--gwp-navy));
+        }
+
+        .timeline-phase {
+            position: relative;
+            padding-bottom: 36px;
+        }
+
+        .timeline-phase:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -40px;
+            width: 26px;
+            height: 26px;
+            background: var(--gwp-white);
+            border: 3px solid var(--gwp-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gwp-navy);
+        }
+
+        .timeline-content {
+            background: var(--gwp-light);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--gwp-border);
+        }
+
+        .timeline-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gwp-navy);
+            margin-bottom: 6px;
+        }
+
+        .timeline-content .phase-weeks {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gwp-gold);
+            margin-bottom: 12px;
+        }
+
+        .timeline-content p {
+            font-size: 14px;
+            color: var(--gwp-slate);
+            line-height: 1.7;
+        }
+
+        /* KPI Panel */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, var(--gwp-navy), var(--gwp-blue));
+            border-radius: 12px;
+            padding: 28px;
+            color: var(--gwp-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+        }
+
+        .kpi-card h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gwp-gold);
+            margin-bottom: 16px;
+        }
+
+        .kpi-card ul {
+            list-style: none;
+        }
+
+        .kpi-card li {
+            font-size: 14px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .kpi-card li:last-child {
+            border-bottom: none;
+        }
+
+        .kpi-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gwp-gold);
+        }
+
+        /* Next Steps */
+        .next-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .next-step-card {
+            background: var(--gwp-light);
+            border: 2px solid var(--gwp-border);
+            border-radius: 12px;
+            padding: 28px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .next-step-card:hover {
+            border-color: var(--gwp-gold);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .next-step-card .option-badge {
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--gwp-gold);
+            color: var(--gwp-navy);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        .next-step-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gwp-navy);
+            margin-top: 8px;
+            margin-bottom: 12px;
+        }
+
+        .next-step-card p {
+            font-size: 14px;
+            color: var(--gwp-slate);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .next-step-card .decision-needed {
+            font-size: 13px;
+            color: var(--gwp-blue);
+            font-weight: 600;
+            padding-top: 12px;
+            border-top: 1px solid var(--gwp-border);
+        }
+
+        /* Data Requirements */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--gwp-border);
+        }
+
+        .data-table th {
+            background: var(--gwp-light);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gwp-navy);
+        }
+
+        .data-table td {
+            font-size: 14px;
+            color: var(--gwp-slate);
+        }
+
+        .data-table td:first-child {
+            font-weight: 600;
+            color: var(--gwp-navy);
+        }
+
+        .data-table tr:hover td {
+            background: var(--gwp-light);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--gwp-navy) 0%, var(--gwp-blue) 100%);
+            border-radius: 16px;
+            padding: 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--gwp-white);
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto 28px;
+            line-height: 1.7;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gwp-gold);
+            color: var(--gwp-navy);
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 16px 36px;
+            border-radius: 8px;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gwp-navy);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--gwp-white);
+        }
+
+        .footer-brand .nova-mark {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gwp-gold), #e8c547);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gwp-navy);
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .footer-brand p strong {
+            font-weight: 600;
+            opacity: 1;
+        }
+
+        .footer-contact {
+            color: var(--gwp-white);
+            text-align: right;
+        }
+
+        .footer-contact p {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-bottom: 4px;
+        }
+
+        .footer-contact a {
+            color: var(--gwp-gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .footer-contact a:hover {
+            color: #e8c547;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .snapshot-grid,
+            .initiative-grid,
+            .kpi-grid,
+            .next-steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pillar-details {
+                grid-template-columns: 1fr;
+            }
+
+            .header-stats {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 40px 24px;
+            }
+
+            .header-top {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .header-main h2 {
+                font-size: 28px;
+            }
+
+            .main-content {
+                padding: 30px 20px 60px;
+            }
+
+            .section-content {
+                padding: 24px;
+            }
+
+            .snapshot-grid,
+            .initiative-grid,
+            .kpi-grid,
+            .next-steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pillar-tabs {
+                flex-wrap: wrap;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .footer-contact {
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+        .section:nth-child(7) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-top">
+                <div class="logo-section">
+                    <div class="logo-mark">GW</div>
+                    <div class="logo-text">
+                        <h1>Greater Washington Partnership</h1>
+                        <div class="partnership-label">AI Opportunity Dashboard</div>
+                    </div>
+                </div>
+                <div class="header-badge">
+                    Prepared by <span>OptimaNova AI</span>
+                </div>
+            </div>
+            <div class="header-main">
+                <h2>Turning Regional Priorities into an <em>Always-On Intelligence</em> and Execution Layer</h2>
+                <p class="header-subtitle">This dashboard highlights high-value AI opportunities aligned to GWP priorities and shows how a focused pilot can prove impact fast. A discussion catalyst for partnership, not a product pitch.</p>
+            </div>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <div class="stat-value">30-60</div>
+                    <div class="stat-label">Day Pilot Timeline</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Pilot Lane Options</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Strategic Pillars</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Snapshot Section -->
+        <section class="section" id="snapshot">
+            <div class="section-header" onclick="toggleSection('snapshot')">
+                <h3>Partnership Snapshot</h3>
+                <div class="section-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="snapshot-grid">
+                    <div class="snapshot-tile">
+                        <h4>Mission</h4>
+                        <p>A CEO-led coalition advancing inclusive regional growth across the Baltimore, DC, and Richmond corridor. Champions for growth and shared prosperity.</p>
+                    </div>
+                    <div class="snapshot-tile">
+                        <h4>Priorities</h4>
+                        <p>Skills and talent development. Mobility and infrastructure advancement. Growth and innovation acceleration. All pursued inclusively.</p>
+                    </div>
+                    <div class="snapshot-tile">
+                        <h4>AI Value</h4>
+                        <p>Faster insight cycles. Clearer employer signaling. Lower coordination drag. Measurable outcomes. Static PDFs become living intelligence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategic Pillars Section -->
+        <section class="section" id="pillars">
+            <div class="section-header" onclick="toggleSection('pillars')">
+                <h3>Strategic Pillars</h3>
+                <div class="section-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="pillar-tabs">
+                    <button class="pillar-tab active" onclick="switchPillar('skills')">Skills & Talent</button>
+                    <button class="pillar-tab" onclick="switchPillar('mobility')">Mobility & Infrastructure</button>
+                    <button class="pillar-tab" onclick="switchPillar('growth')">Growth & Innovation</button>
+                </div>
+
+                <!-- Skills & Talent -->
+                <div class="pillar-content active" id="pillar-skills">
+                    <div class="pillar-header">
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="pillar-info">
+                            <h4>Expand an Inclusive Tech Workforce</h4>
+                            <p>Shorten time-to-skill for priority roles. Build the most diverse digital tech workforce in the country by aligning what employers need with what educators teach.</p>
+                        </div>
+                    </div>
+                    <div class="pillar-details">
+                        <div class="detail-block">
+                            <h5>AI Accelerators</h5>
+                            <ul>
+                                <li>Skills clustering from job signals</li>
+                                <li>Pathway recommendations for learners</li>
+                                <li>Automated brief generation for employers and educators</li>
+                            </ul>
+                        </div>
+                        <div class="detail-block">
+                            <h5>Key Performance Indicators</h5>
+                            <ul>
+                                <li>Time-to-fill reduction</li>
+                                <li>Placement rate improvement</li>
+                                <li>Completion rate gains</li>
+                                <li>Employer participation growth</li>
+                                <li>Skills adoption velocity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobility & Infrastructure -->
+                <div class="pillar-content" id="pillar-mobility">
+                    <div class="pillar-header">
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                            </svg>
+                        </div>
+                        <div class="pillar-info">
+                            <h4>Improve Access to Opportunity</h4>
+                            <p>Reduce friction in transportation and housing-related constraints. Champion regional connectivity and foundational systems that drive long-term economic competitiveness.</p>
+                        </div>
+                    </div>
+                    <div class="pillar-details">
+                        <div class="detail-block">
+                            <h5>AI Accelerators</h5>
+                            <ul>
+                                <li>Scenario narratives for planning</li>
+                                <li>Stakeholder impact briefs</li>
+                                <li>Issue tracking and decision memos</li>
+                            </ul>
+                        </div>
+                        <div class="detail-block">
+                            <h5>Key Performance Indicators</h5>
+                            <ul>
+                                <li>Project cycle time reduction</li>
+                                <li>Stakeholder alignment time improvement</li>
+                                <li>Adoption rate of recommended interventions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Growth & Innovation -->
+                <div class="pillar-content" id="pillar-growth">
+                    <div class="pillar-header">
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                <polyline points="17 6 23 6 23 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="pillar-info">
+                            <h4>Increase Regional Competitiveness</h4>
+                            <p>Accelerate coalition initiatives and innovation pathways. Leverage data, insights, and social capital to drive economic growth and strengthen the innovation ecosystem.</p>
+                        </div>
+                    </div>
+                    <div class="pillar-details">
+                        <div class="detail-block">
+                            <h5>AI Accelerators</h5>
+                            <ul>
+                                <li>Opportunity detection across sectors</li>
+                                <li>Partner matching algorithms</li>
+                                <li>Progress tracking with automated updates</li>
+                            </ul>
+                        </div>
+                        <div class="detail-block">
+                            <h5>Key Performance Indicators</h5>
+                            <ul>
+                                <li>Initiatives launched</li>
+                                <li>Partner engagement rate</li>
+                                <li>Time saved on coordination</li>
+                                <li>Outcomes achieved vs. baseline</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Initiative Spotlights -->
+        <section class="section" id="initiatives">
+            <div class="section-header" onclick="toggleSection('initiatives')">
+                <h3>Initiative Spotlights</h3>
+                <div class="section-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="initiative-grid">
+                    <div class="initiative-card">
+                        <h4>Capital CoLAB</h4>
+                        <div class="ai-lift">AI Lift Potential</div>
+                        <p>Skill pathway navigator that connects learners to in-demand roles. Employer-education alignment briefs generated on demand. Internship matching based on skills signals.</p>
+                    </div>
+                    <div class="initiative-card">
+                        <h4>Employer Signaling System</h4>
+                        <div class="ai-lift">AI Lift Potential</div>
+                        <p>Automated job signal ingestion from regional employers. Skills clustering that reveals demand patterns. Natural language queries against workforce data.</p>
+                    </div>
+                    <div class="initiative-card">
+                        <h4>Employer Insights</h4>
+                        <div class="ai-lift">AI Lift Potential</div>
+                        <p>Brief generator that turns raw data into stakeholder-ready narratives. Trend detection across time periods. Audience-specific summaries for different stakeholders.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 90-Day Playbook -->
+        <section class="section" id="playbook">
+            <div class="section-header" onclick="toggleSection('playbook')">
+                <h3>90-Day Partnership Playbook</h3>
+                <div class="section-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="playbook-timeline">
+                    <div class="timeline-phase">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <h4>Discovery & Alignment</h4>
+                            <div class="phase-weeks">Weeks 1-2</div>
+                            <p>Stakeholder interviews to understand workflows. Data inventory and access requirements. Select one pilot lane. Define success metrics and governance guardrails.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-phase">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <h4>Build the MVP</h4>
+                            <div class="phase-weeks">Weeks 3-6</div>
+                            <p>Secure knowledge base with existing GWP content. Dashboard v1 deployment. AI copilot prototype tuned to selected pilot lane. Governance guardrails in place.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-phase">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <h4>Pilot & Measure</h4>
+                            <div class="phase-weeks">Weeks 7-10</div>
+                            <p>Run with a small user group. Measure time saved and decision velocity. Iterate based on feedback. Document wins and friction points.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-phase">
+                        <div class="timeline-marker">4</div>
+                        <div class="timeline-content">
+                            <h4>Board-Ready Outputs</h4>
+                            <div class="phase-weeks">Weeks 11-12</div>
+                            <p>Briefs and artifacts leadership can reuse. Scale plan with resource requirements. Phase 2 roadmap with expanded use cases. ROI documentation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KPI & ROI Panel -->
+        <section class="section" id="kpi">
+            <div class="section-header" onclick="toggleSection('kpi')">
+                <h3>KPI & ROI Framework</h3>
+                <div class="section-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <h4>Leading Indicators (First 30 Days)</h4>
+                        <ul>
+                            <li>Adoption rate among target users</li>
+                            <li>Weekly active users</li>
+                            <li>Time saved on recurring workflows</li>
+                            <li>User satisfaction scores</li>
+                        </ul>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>Outcome Metrics (60-90 Days)</h4>
+                        <ul>
+                            <li>Faster brief turnaround time</li>
+                            <li>Improved employer signaling clarity</li>
+                            <li>Reduced coordination cycle time</li>
+                            <li>Stakeholder feedback quality</li>
+                        </ul>
+                    </div>
+                    <div class="kpi-card">
+                        <h4>ROI Model</h4>
+                        <ul>
+                            <li>Hours saved × blended hourly cost</li>
+                            <li>Value of faster decisions (cycle time)</li>
+                            <li>Capacity unlocked for strategic work</li>
+                            <li>Quality improvement multiplier</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next Steps / Pilot Options -->
+        <section class="section" id="nextsteps">
+            <div class="section-header" onclick="toggleSection('nextsteps')">
+                <h3>Pilot Options</h3>
+                <div class="section-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="next-steps-grid">
+                    <div class="next-step-card">
+                        <div class="option-badge">Lane A</div>
+                        <h4>Workforce Signaling Copilot</h4>
+                        <p>AI assistant for employer signals and pathways. Turns job data into actionable insights for educators and workforce partners.</p>
+                        <div class="decision-needed">Decision needed: Confirm program owner, data sources, success metrics.</div>
+                    </div>
+                    <div class="next-step-card">
+                        <div class="option-badge">Lane B</div>
+                        <h4>Regional Intelligence Copilot</h4>
+                        <p>Turns updates, reports, and stakeholder inputs into decision-ready briefs. Always-current knowledge base for leadership.</p>
+                        <div class="decision-needed">Decision needed: Confirm inputs, audiences, governance guardrails.</div>
+                    </div>
+                    <div class="next-step-card">
+                        <div class="option-badge">Lane C</div>
+                        <h4>Internal Operations Assistant</h4>
+                        <p>Coordination support, meeting prep, and reporting automation. Reduces drag on high-value staff time.</p>
+                        <div class="decision-needed">Decision needed: Confirm user group, workflow list.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Requirements -->
+        <section class="section" id="data">
+            <div class="section-header" onclick="toggleSection('data')">
+                <h3>Data & Inputs We Need</h3>
+                <div class="section-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+            <div class="section-content">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Input</th>
+                            <th>Why It Matters</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Existing reports and briefs (PDFs, decks)</td>
+                            <td>Seeds the knowledge base so the copilot answers consistently from day one.</td>
+                        </tr>
+                        <tr>
+                            <td>Employer signaling data (job signals, role profiles)</td>
+                            <td>Enables skills clustering, trend detection, and pathway recommendations.</td>
+                        </tr>
+                        <tr>
+                            <td>Stakeholder list and success metrics</td>
+                            <td>Defines what "good" looks like and keeps the pilot measurable.</td>
+                        </tr>
+                        <tr>
+                            <td>Tools and systems inventory (optional)</td>
+                            <td>Speeds integration planning for automation and dashboards.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <div class="cta-content">
+                <h3>Ready to Move Forward?</h3>
+                <p>Proposed next step: 25-minute walkthrough of this dashboard, then select one pilot lane and confirm success metrics. Fast start: share 3-5 existing briefs or tools you already publish, and we will build the knowledge base skeleton before the meeting.</p>
+                <a href="mailto:Shann@optimanova.ai?subject=Greater%20Washington%20Partnership%20-%20AI%20Opportunity%20Discussion" class="cta-button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Schedule a Discussion
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="nova-mark">O</div>
+                <div>
+                    <p><strong>Developed by OptimaNova AI</strong></p>
+                    <p>Human-centered AI adoption at scale</p>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <p>Questions? Let's talk.</p>
+                <a href="mailto:Shann@optimanova.ai">Shann@optimanova.ai</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle section collapse
+        function toggleSection(id) {
+            const section = document.getElementById(id);
+            section.classList.toggle('collapsed');
+        }
+
+        // Switch pillar tabs
+        function switchPillar(pillar) {
+            // Remove active from all tabs and content
+            document.querySelectorAll('.pillar-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.pillar-content').forEach(content => content.classList.remove('active'));
+
+            // Add active to clicked tab and corresponding content
+            event.target.classList.add('active');
+            document.getElementById('pillar-' + pillar).classList.add('active');
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
