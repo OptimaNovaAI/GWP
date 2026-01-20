@@ -283,6 +283,65 @@
             opacity: 0;
         }
 
+        /* Current State Callout */
+        .current-state-callout {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            border: 2px solid #86efac;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .current-state-callout .callout-icon {
+            width: 44px;
+            height: 44px;
+            background: #22c55e;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .current-state-callout .callout-icon svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        .current-state-callout .callout-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: #166534;
+            margin-bottom: 6px;
+        }
+
+        .current-state-callout .callout-content p {
+            font-size: 14px;
+            color: #15803d;
+            line-height: 1.6;
+        }
+
+        .current-state-callout .callout-content .tools-list {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .current-state-callout .tool-badge {
+            background: white;
+            border: 1px solid #86efac;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #166534;
+        }
+
         /* Snapshot Tiles */
         .snapshot-grid {
             display: grid;
@@ -564,11 +623,21 @@
             color: var(--gwp-navy);
         }
 
+        .timeline-phase.foundation .timeline-marker {
+            background: var(--gwp-gold);
+            color: var(--gwp-navy);
+        }
+
         .timeline-content {
             background: var(--gwp-light);
             border-radius: 12px;
             padding: 24px;
             border: 1px solid var(--gwp-border);
+        }
+
+        .timeline-phase.foundation .timeline-content {
+            background: linear-gradient(135deg, #fef9c3 0%, #fef3c7 100%);
+            border-color: #fcd34d;
         }
 
         .timeline-content h4 {
@@ -586,10 +655,18 @@
             margin-bottom: 12px;
         }
 
+        .timeline-phase.foundation .timeline-content .phase-weeks {
+            color: #b45309;
+        }
+
         .timeline-content p {
             font-size: 14px;
             color: var(--gwp-slate);
             line-height: 1.7;
+        }
+
+        .timeline-phase.foundation .timeline-content p {
+            color: #92400e;
         }
 
         /* KPI Panel */
@@ -941,6 +1018,14 @@
             .footer-contact {
                 text-align: center;
             }
+
+            .current-state-callout {
+                flex-direction: column;
+            }
+
+            .current-state-callout .tools-list {
+                flex-wrap: wrap;
+            }
         }
 
         /* Animations */
@@ -965,6 +1050,7 @@
         .section:nth-child(5) { animation-delay: 0.4s; }
         .section:nth-child(6) { animation-delay: 0.5s; }
         .section:nth-child(7) { animation-delay: 0.6s; }
+        .section:nth-child(8) { animation-delay: 0.7s; }
     </style>
 </head>
 <body>
@@ -976,7 +1062,7 @@
                     <div class="logo-mark">GW</div>
                     <div class="logo-text">
                         <h1>Greater Washington Partnership</h1>
-                        <div class="partnership-label">AI Opportunity Dashboard</div>
+                        <div class="partnership-label">AI Optimization Dashboard</div>
                     </div>
                 </div>
                 <div class="header-badge">
@@ -984,8 +1070,8 @@
                 </div>
             </div>
             <div class="header-main">
-                <h2>Turning Regional Priorities into an <em>Always-On Intelligence</em> and Execution Layer</h2>
-                <p class="header-subtitle">This dashboard highlights high-value AI opportunities aligned to GWP priorities and shows how a focused pilot can prove impact fast. A discussion catalyst for partnership, not a product pitch.</p>
+                <h2>Get More From the <em>AI Tools You Already Use</em></h2>
+                <p class="header-subtitle">Your team is already using ChatGPT, Gemini, and Copilot. This dashboard shows how to establish organizational standards, optimize workflows, and turn scattered experimentation into measurable impact.</p>
             </div>
             <div class="header-stats">
                 <div class="stat-item">
@@ -994,7 +1080,7 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">3</div>
-                    <div class="stat-label">Pilot Lane Options</div>
+                    <div class="stat-label">Adoption Pathways</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">3</div>
@@ -1006,10 +1092,10 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Snapshot Section -->
-        <section class="section" id="snapshot">
-            <div class="section-header" onclick="toggleSection('snapshot')">
-                <h3>Partnership Snapshot</h3>
+        <!-- Current State Section -->
+        <section class="section" id="currentstate">
+            <div class="section-header" onclick="toggleSection('currentstate')">
+                <h3>Where You Are Today</h3>
                 <div class="section-toggle">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -1017,18 +1103,35 @@
                 </div>
             </div>
             <div class="section-content">
+                <div class="current-state-callout">
+                    <div class="callout-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <div class="callout-content">
+                        <h4>Your Team Is Already Using AI</h4>
+                        <p>Staff across the organization are experimenting with AI tools for day-to-day work. The opportunity is not adopting new technology. It is establishing clear standards, optimizing prompting practices, and scaling what works.</p>
+                        <div class="tools-list">
+                            <span class="tool-badge">ChatGPT</span>
+                            <span class="tool-badge">Gemini</span>
+                            <span class="tool-badge">Copilot</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="snapshot-grid">
                     <div class="snapshot-tile">
-                        <h4>Mission</h4>
-                        <p>A CEO-led coalition advancing inclusive regional growth across the Baltimore, DC, and Richmond corridor. Champions for growth and shared prosperity.</p>
+                        <h4>The Challenge</h4>
+                        <p>Individual experimentation without shared standards. Inconsistent outputs. No way to measure impact or share what works across teams.</p>
                     </div>
                     <div class="snapshot-tile">
-                        <h4>Priorities</h4>
-                        <p>Skills and talent development. Mobility and infrastructure advancement. Growth and innovation acceleration. All pursued inclusively.</p>
+                        <h4>The Opportunity</h4>
+                        <p>Establish organizational prompting standards. Create reusable templates for common workflows. Embed best practices that compound over time.</p>
                     </div>
                     <div class="snapshot-tile">
-                        <h4>AI Value</h4>
-                        <p>Faster insight cycles. Clearer employer signaling. Lower coordination drag. Measurable outcomes. Static PDFs become living intelligence.</p>
+                        <h4>The Outcome</h4>
+                        <p>Staff get more from tools they already use. Consistent quality across outputs. Measurable time savings. A foundation for future AI initiatives.</p>
                     </div>
                 </div>
             </div>
@@ -1037,7 +1140,7 @@
         <!-- Strategic Pillars Section -->
         <section class="section" id="pillars">
             <div class="section-header" onclick="toggleSection('pillars')">
-                <h3>Strategic Pillars</h3>
+                <h3>AI Optimization by Strategic Pillar</h3>
                 <div class="section-toggle">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -1064,26 +1167,24 @@
                         </div>
                         <div class="pillar-info">
                             <h4>Expand an Inclusive Tech Workforce</h4>
-                            <p>Shorten time-to-skill for priority roles. Build the most diverse digital tech workforce in the country by aligning what employers need with what educators teach.</p>
+                            <p>Optimize AI tool usage for workforce signaling, employer briefs, and pathway recommendations. Establish prompting standards that make the Employer Signaling System and CoLAB outputs more consistent and actionable.</p>
                         </div>
                     </div>
                     <div class="pillar-details">
                         <div class="detail-block">
-                            <h5>AI Accelerators</h5>
+                            <h5>Workflow Optimizations</h5>
                             <ul>
-                                <li>Skills clustering from job signals</li>
-                                <li>Pathway recommendations for learners</li>
-                                <li>Automated brief generation for employers and educators</li>
+                                <li>Standardized prompts for skills clustering analysis</li>
+                                <li>Templates for employer-educator alignment briefs</li>
+                                <li>Reusable queries for job signal interpretation</li>
                             </ul>
                         </div>
                         <div class="detail-block">
-                            <h5>Key Performance Indicators</h5>
+                            <h5>Prompting Standards to Establish</h5>
                             <ul>
-                                <li>Time-to-fill reduction</li>
-                                <li>Placement rate improvement</li>
-                                <li>Completion rate gains</li>
-                                <li>Employer participation growth</li>
-                                <li>Skills adoption velocity</li>
+                                <li>Consistent tone and format for stakeholder communications</li>
+                                <li>Quality benchmarks for AI-assisted outputs</li>
+                                <li>Review workflows before external distribution</li>
                             </ul>
                         </div>
                     </div>
@@ -1100,24 +1201,24 @@
                         </div>
                         <div class="pillar-info">
                             <h4>Improve Access to Opportunity</h4>
-                            <p>Reduce friction in transportation and housing-related constraints. Champion regional connectivity and foundational systems that drive long-term economic competitiveness.</p>
+                            <p>Use AI tools more effectively for scenario planning, stakeholder briefs, and policy analysis. Build prompting templates that turn complex transportation and housing data into clear, decision-ready narratives.</p>
                         </div>
                     </div>
                     <div class="pillar-details">
                         <div class="detail-block">
-                            <h5>AI Accelerators</h5>
+                            <h5>Workflow Optimizations</h5>
                             <ul>
-                                <li>Scenario narratives for planning</li>
-                                <li>Stakeholder impact briefs</li>
-                                <li>Issue tracking and decision memos</li>
+                                <li>Templates for scenario narrative generation</li>
+                                <li>Standardized stakeholder impact brief formats</li>
+                                <li>Prompts for synthesizing policy updates</li>
                             </ul>
                         </div>
                         <div class="detail-block">
-                            <h5>Key Performance Indicators</h5>
+                            <h5>Prompting Standards to Establish</h5>
                             <ul>
-                                <li>Project cycle time reduction</li>
-                                <li>Stakeholder alignment time improvement</li>
-                                <li>Adoption rate of recommended interventions</li>
+                                <li>Data citation and source attribution practices</li>
+                                <li>Audience-specific language guidelines</li>
+                                <li>Fact-check protocols for AI-generated content</li>
                             </ul>
                         </div>
                     </div>
@@ -1134,25 +1235,24 @@
                         </div>
                         <div class="pillar-info">
                             <h4>Increase Regional Competitiveness</h4>
-                            <p>Accelerate coalition initiatives and innovation pathways. Leverage data, insights, and social capital to drive economic growth and strengthen the innovation ecosystem.</p>
+                            <p>Leverage AI tools for partner communications, progress tracking, and opportunity synthesis. Create organizational standards that accelerate coalition work without sacrificing quality.</p>
                         </div>
                     </div>
                     <div class="pillar-details">
                         <div class="detail-block">
-                            <h5>AI Accelerators</h5>
+                            <h5>Workflow Optimizations</h5>
                             <ul>
-                                <li>Opportunity detection across sectors</li>
-                                <li>Partner matching algorithms</li>
-                                <li>Progress tracking with automated updates</li>
+                                <li>Partner update templates and communication cadences</li>
+                                <li>Meeting prep and follow-up automation</li>
+                                <li>Progress report generation from raw inputs</li>
                             </ul>
                         </div>
                         <div class="detail-block">
-                            <h5>Key Performance Indicators</h5>
+                            <h5>Prompting Standards to Establish</h5>
                             <ul>
-                                <li>Initiatives launched</li>
-                                <li>Partner engagement rate</li>
-                                <li>Time saved on coordination</li>
-                                <li>Outcomes achieved vs. baseline</li>
+                                <li>Brand voice consistency across AI outputs</li>
+                                <li>Confidentiality protocols for sensitive data</li>
+                                <li>Approval workflows for external communications</li>
                             </ul>
                         </div>
                     </div>
@@ -1160,10 +1260,10 @@
             </div>
         </section>
 
-        <!-- Initiative Spotlights -->
-        <section class="section" id="initiatives">
-            <div class="section-header" onclick="toggleSection('initiatives')">
-                <h3>Initiative Spotlights</h3>
+        <!-- Workflow Spotlights -->
+        <section class="section" id="workflows">
+            <div class="section-header" onclick="toggleSection('workflows')">
+                <h3>High-Impact Workflow Optimizations</h3>
                 <div class="section-toggle">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -1173,19 +1273,19 @@
             <div class="section-content">
                 <div class="initiative-grid">
                     <div class="initiative-card">
-                        <h4>Capital CoLAB</h4>
-                        <div class="ai-lift">AI Lift Potential</div>
-                        <p>Skill pathway navigator that connects learners to in-demand roles. Employer-education alignment briefs generated on demand. Internship matching based on skills signals.</p>
+                        <h4>Capital CoLAB Outputs</h4>
+                        <div class="ai-lift">Optimization Potential</div>
+                        <p>Standardized prompts for pathway recommendations. Templates that turn raw employer signals into educator-ready briefs. Consistent formatting across all CoLAB communications.</p>
                     </div>
                     <div class="initiative-card">
                         <h4>Employer Signaling System</h4>
-                        <div class="ai-lift">AI Lift Potential</div>
-                        <p>Automated job signal ingestion from regional employers. Skills clustering that reveals demand patterns. Natural language queries against workforce data.</p>
+                        <div class="ai-lift">Optimization Potential</div>
+                        <p>Reusable prompts for interpreting job signal data. Standard queries for skills clustering. Templates that make trend analysis faster and more consistent.</p>
                     </div>
                     <div class="initiative-card">
-                        <h4>Employer Insights</h4>
-                        <div class="ai-lift">AI Lift Potential</div>
-                        <p>Brief generator that turns raw data into stakeholder-ready narratives. Trend detection across time periods. Audience-specific summaries for different stakeholders.</p>
+                        <h4>Stakeholder Communications</h4>
+                        <div class="ai-lift">Optimization Potential</div>
+                        <p>Audience-specific templates for board updates, partner briefs, and public communications. Prompting standards that maintain GWP's voice across all AI-assisted content.</p>
                     </div>
                 </div>
             </div>
@@ -1194,7 +1294,7 @@
         <!-- 90-Day Playbook -->
         <section class="section" id="playbook">
             <div class="section-header" onclick="toggleSection('playbook')">
-                <h3>90-Day Partnership Playbook</h3>
+                <h3>90-Day Adoption Playbook</h3>
                 <div class="section-toggle">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -1203,36 +1303,44 @@
             </div>
             <div class="section-content">
                 <div class="playbook-timeline">
+                    <div class="timeline-phase foundation">
+                        <div class="timeline-marker">0</div>
+                        <div class="timeline-content">
+                            <h4>Foundation: AI Training & Standards Workshop</h4>
+                            <div class="phase-weeks">Weeks 1-2</div>
+                            <p>Hands-on training focused on prompting best practices. Establish organizational standards for AI tool usage. Identify priority workflows and quick wins. Build shared vocabulary and quality expectations.</p>
+                        </div>
+                    </div>
                     <div class="timeline-phase">
                         <div class="timeline-marker">1</div>
                         <div class="timeline-content">
                             <h4>Discovery & Alignment</h4>
-                            <div class="phase-weeks">Weeks 1-2</div>
-                            <p>Stakeholder interviews to understand workflows. Data inventory and access requirements. Select one pilot lane. Define success metrics and governance guardrails.</p>
+                            <div class="phase-weeks">Weeks 3-4</div>
+                            <p>Document current workflows and pain points. Select pilot use cases based on training insights. Define success metrics and governance guardrails. Assign workflow owners.</p>
                         </div>
                     </div>
                     <div class="timeline-phase">
                         <div class="timeline-marker">2</div>
                         <div class="timeline-content">
-                            <h4>Build the MVP</h4>
-                            <div class="phase-weeks">Weeks 3-6</div>
-                            <p>Secure knowledge base with existing GWP content. Dashboard v1 deployment. AI copilot prototype tuned to selected pilot lane. Governance guardrails in place.</p>
+                            <h4>Build the Standards Library</h4>
+                            <div class="phase-weeks">Weeks 5-8</div>
+                            <p>Create reusable prompt templates for priority workflows. Develop quality benchmarks and review checklists. Build internal knowledge base of what works. Document organizational prompting standards.</p>
                         </div>
                     </div>
                     <div class="timeline-phase">
                         <div class="timeline-marker">3</div>
                         <div class="timeline-content">
                             <h4>Pilot & Measure</h4>
-                            <div class="phase-weeks">Weeks 7-10</div>
-                            <p>Run with a small user group. Measure time saved and decision velocity. Iterate based on feedback. Document wins and friction points.</p>
+                            <div class="phase-weeks">Weeks 9-11</div>
+                            <p>Roll out standards to pilot group. Measure time saved and output quality. Iterate based on feedback. Identify candidates for broader rollout.</p>
                         </div>
                     </div>
                     <div class="timeline-phase">
                         <div class="timeline-marker">4</div>
                         <div class="timeline-content">
-                            <h4>Board-Ready Outputs</h4>
-                            <div class="phase-weeks">Weeks 11-12</div>
-                            <p>Briefs and artifacts leadership can reuse. Scale plan with resource requirements. Phase 2 roadmap with expanded use cases. ROI documentation.</p>
+                            <h4>Scale & Sustain</h4>
+                            <div class="phase-weeks">Week 12+</div>
+                            <p>Leadership-ready impact report. Expanded rollout plan. Ongoing governance recommendations. Phase 2 roadmap for advanced use cases.</p>
                         </div>
                     </div>
                 </div>
@@ -1252,28 +1360,28 @@
             <div class="section-content">
                 <div class="kpi-grid">
                     <div class="kpi-card">
-                        <h4>Leading Indicators (First 30 Days)</h4>
+                        <h4>Adoption Metrics (First 30 Days)</h4>
                         <ul>
-                            <li>Adoption rate among target users</li>
-                            <li>Weekly active users</li>
-                            <li>Time saved on recurring workflows</li>
-                            <li>User satisfaction scores</li>
+                            <li>Staff trained on prompting standards</li>
+                            <li>Workflows documented with templates</li>
+                            <li>Active users of standards library</li>
+                            <li>Confidence scores (pre/post training)</li>
                         </ul>
                     </div>
                     <div class="kpi-card">
-                        <h4>Outcome Metrics (60-90 Days)</h4>
+                        <h4>Efficiency Metrics (60-90 Days)</h4>
                         <ul>
-                            <li>Faster brief turnaround time</li>
-                            <li>Improved employer signaling clarity</li>
-                            <li>Reduced coordination cycle time</li>
-                            <li>Stakeholder feedback quality</li>
+                            <li>Time saved on recurring workflows</li>
+                            <li>Output quality consistency scores</li>
+                            <li>Revision cycles reduced</li>
+                            <li>Template reuse rate</li>
                         </ul>
                     </div>
                     <div class="kpi-card">
                         <h4>ROI Model</h4>
                         <ul>
                             <li>Hours saved × blended hourly cost</li>
-                            <li>Value of faster decisions (cycle time)</li>
+                            <li>Reduced external contractor spend</li>
                             <li>Capacity unlocked for strategic work</li>
                             <li>Quality improvement multiplier</li>
                         </ul>
@@ -1282,10 +1390,10 @@
             </div>
         </section>
 
-        <!-- Next Steps / Pilot Options -->
+        <!-- Pilot Options -->
         <section class="section" id="nextsteps">
             <div class="section-header" onclick="toggleSection('nextsteps')">
-                <h3>Pilot Options</h3>
+                <h3>Adoption Pathways</h3>
                 <div class="section-toggle">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -1295,22 +1403,22 @@
             <div class="section-content">
                 <div class="next-steps-grid">
                     <div class="next-step-card">
-                        <div class="option-badge">Lane A</div>
-                        <h4>Workforce Signaling Copilot</h4>
-                        <p>AI assistant for employer signals and pathways. Turns job data into actionable insights for educators and workforce partners.</p>
-                        <div class="decision-needed">Decision needed: Confirm program owner, data sources, success metrics.</div>
+                        <div class="option-badge">Path A</div>
+                        <h4>Workforce Workflows</h4>
+                        <p>Focus on CoLAB and Employer Signaling System outputs. Standardize prompts for skills analysis, pathway briefs, and employer communications.</p>
+                        <div class="decision-needed">Decision needed: Confirm priority outputs, assign workflow owners, define quality benchmarks.</div>
                     </div>
                     <div class="next-step-card">
-                        <div class="option-badge">Lane B</div>
-                        <h4>Regional Intelligence Copilot</h4>
-                        <p>Turns updates, reports, and stakeholder inputs into decision-ready briefs. Always-current knowledge base for leadership.</p>
-                        <div class="decision-needed">Decision needed: Confirm inputs, audiences, governance guardrails.</div>
+                        <div class="option-badge">Path B</div>
+                        <h4>Stakeholder Communications</h4>
+                        <p>Optimize AI usage for board updates, partner briefs, and regional reports. Establish voice and format standards across all external communications.</p>
+                        <div class="decision-needed">Decision needed: Identify high-frequency outputs, confirm approval workflows, set review protocols.</div>
                     </div>
                     <div class="next-step-card">
-                        <div class="option-badge">Lane C</div>
-                        <h4>Internal Operations Assistant</h4>
-                        <p>Coordination support, meeting prep, and reporting automation. Reduces drag on high-value staff time.</p>
-                        <div class="decision-needed">Decision needed: Confirm user group, workflow list.</div>
+                        <div class="option-badge">Path C</div>
+                        <h4>Internal Operations</h4>
+                        <p>Streamline meeting prep, follow-ups, and coordination tasks. Build templates that reduce drag on high-value staff time.</p>
+                        <div class="decision-needed">Decision needed: Confirm pilot user group, document current workflows, set time-savings targets.</div>
                     </div>
                 </div>
             </div>
@@ -1319,7 +1427,7 @@
         <!-- Data Requirements -->
         <section class="section" id="data">
             <div class="section-header" onclick="toggleSection('data')">
-                <h3>Data & Inputs We Need</h3>
+                <h3>What We Need to Get Started</h3>
                 <div class="section-toggle">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -1336,20 +1444,20 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Existing reports and briefs (PDFs, decks)</td>
-                            <td>Seeds the knowledge base so the copilot answers consistently from day one.</td>
+                            <td>Sample outputs staff currently produce with AI</td>
+                            <td>Shows current usage patterns and quality levels. Identifies gaps where standards would help most.</td>
                         </tr>
                         <tr>
-                            <td>Employer signaling data (job signals, role profiles)</td>
-                            <td>Enables skills clustering, trend detection, and pathway recommendations.</td>
+                            <td>List of recurring workflows and their owners</td>
+                            <td>Prioritizes where to focus optimization efforts. Ensures the right people are trained first.</td>
                         </tr>
                         <tr>
-                            <td>Stakeholder list and success metrics</td>
-                            <td>Defines what "good" looks like and keeps the pilot measurable.</td>
+                            <td>Existing style guides or communication standards</td>
+                            <td>Anchors AI prompting standards to established brand voice and quality expectations.</td>
                         </tr>
                         <tr>
-                            <td>Tools and systems inventory (optional)</td>
-                            <td>Speeds integration planning for automation and dashboards.</td>
+                            <td>Current AI tools and access levels</td>
+                            <td>Ensures training and templates work with tools staff already have access to.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1360,8 +1468,8 @@
         <div class="cta-section">
             <div class="cta-content">
                 <h3>Ready to Move Forward?</h3>
-                <p>Proposed next step: 25-minute walkthrough of this dashboard, then select one pilot lane and confirm success metrics. Fast start: share 3-5 existing briefs or tools you already publish, and we will build the knowledge base skeleton before the meeting.</p>
-                <a href="mailto:Shann@optimanova.ai?subject=Greater%20Washington%20Partnership%20-%20AI%20Opportunity%20Discussion" class="cta-button">
+                <p>Proposed next step: 25-minute walkthrough of this dashboard. We will align on one adoption pathway, confirm the pilot group, and schedule the initial training session.</p>
+                <a href="mailto:Shann@optimanova.ai?subject=Greater%20Washington%20Partnership%20-%20AI%20Optimization%20Discussion" class="cta-button">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                         <polyline points="22,6 12,13 2,6"></polyline>
